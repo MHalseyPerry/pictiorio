@@ -28,7 +28,7 @@ class User extends Component {
         const { user } = this.props;
 
         return (
-            <div className="user">
+            <div className="user" >
                 <img src={user.pic} />
             </div>
         );

@@ -45,9 +45,10 @@ class Canvas extends Component {
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(x, y);
         ctx.strokeStyle = paletteStore.currentColor.hex;
+        ctx.lineJoin = "round";
         ctx.lineWidth = brushPotStore.currentBrushSize;
-        ctx.stroke();
         ctx.closePath();
+        ctx.stroke();
     }
 
     findXY (type, e) {
