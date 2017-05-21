@@ -30,6 +30,7 @@ class User extends Component {
         return (
             <div className="user" >
                 <img src={user.pic} />
+                <div className="name">{user.name}</div>
             </div>
         );
     }

@@ -71,6 +71,7 @@ body {
     canvas {
         background: $white;
         cursor: crosshair;
+        user-select: none;
 
         @include shadow(2);
     }
@@ -99,12 +100,50 @@ body {
         flex-shrink: 1;
         flex-grow: 0;
         margin: 1%;
+        position: relative;
         @include shadow(2);
+
+        &:hover {
+            .name {
+                transform: translateX(-50%) scale(1);
+            }
+        }
 
         img {
             width: 100%;
             border-radius: 50%;
             display: block;
+        }
+
+        .name {
+            position: absolute;
+            top: 105%;
+            left: 50%;
+            display: block;
+            background: rgba($black, 0.95);
+            color: $white;
+            padding: .3em;
+            border-radius: 3px;
+            font-family: $header;
+            min-width: 150%;
+            text-align: center;
+            user-select: none;
+
+            transition: all .2s cubic-bezier(.13,.73,.56,1.18);
+            transform-origin: center top;
+            transform: translateX(-50%) scale(0);
+
+            &:before {
+                content: '';
+                display: block;
+                width: 0; height: 0;
+                position: absolute;
+                bottom: 100%; left: 50%;
+                transform: translateX(-50%);
+                border-bottom: 3px solid rgba($black, 0.95);
+                border-left: 3px solid transparent;
+                border-right: 3px solid transparent;
+            }
         }
     }
 }

@@ -13590,7 +13590,12 @@ let User = class User extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'user' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: user.pic })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: user.pic }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'name' },
+                user.name
+            )
         );
     }
 };
