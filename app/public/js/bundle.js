@@ -17438,10 +17438,11 @@ let Root = class Root extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'header' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '/favicon-32x32.png' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h1',
                     null,
-                    'pictorio'
+                    'ictorio'
                 )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Easel__["a" /* default */], null),

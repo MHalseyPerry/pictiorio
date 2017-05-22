@@ -20,7 +20,8 @@ class Root extends Component {
         return (
             <div>
                 <div className="header">
-                    <h1>pictorio</h1>
+                    <img src="/favicon-32x32.png" />
+                    <h1>ictorio</h1>
                 </div>
 
                 <Easel />
