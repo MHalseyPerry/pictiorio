@@ -26,4 +26,4 @@ const indexHtml = (html) => `
 </html>
 `;
 
-export default indexHtml;
+module.exports = indexHtml;

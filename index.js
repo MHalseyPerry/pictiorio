@@ -22,15 +22,9 @@ var _server2 = _interopRequireDefault(_server);
 
 var _reactRouter = require('react-router');
 
-var _reactRouter2 = _interopRequireDefault(_reactRouter);
-
 var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
-
-var _indexHtml = require('./app/public/index.html.js');
-
-var _indexHtml2 = _interopRequireDefault(_indexHtml);
 
 var _path = require('path');
 
@@ -46,6 +40,8 @@ var app = (0, _express2.default)();
 var server = _http2.default.Server(app);
 var io = new _socket2.default(server);
 
+var indexHtml = require('./app/public/index.html.js');
+
 var file = function file(f) {
     return _path2.default.join(__dirname, '/app/public', f || '');
 };
@@ -57,18 +53,18 @@ app.use(_express2.default.static(file()));
 app.use(function (req, res, next) {
     var context = {};
     var html = _server2.default.renderToString(_react2.default.createElement(
-        StaticRouter,
+        _reactRouter.StaticRouter,
         {
             location: req.url,
             context: context },
-        _routes2.default
+        (0, _routes2.default)()
     ));
 
     if (context.url) {
         res.writeHead(301, { Location: context.url });
         res.end();
     } else {
-        res.write((0, _indexHtml2.default)(html));
+        res.write(indexHtml(html));
         res.end();
     }
 });
@@ -83,6 +79,6 @@ io.on('connection', function (socket) {
 /*
  * Start Listening
  */
-_http2.default.listen(3000, function () {
+server.listen(3000, function () {
     return console.log('App listening on port 3000!');
 });

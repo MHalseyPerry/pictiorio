@@ -1,13 +1,18 @@
 import React from 'react';
 import {
-    StaticRouter,
-    Route
+    Route,
+    Switch
 } from 'react-router';
 
 import Easel from '../app/assets/js/Easel';
 
-const routes = [
-    <Route path="/" component={Easel} />
-];
+function routes () {
+  return (
+    <Switch>
+        <Route path="/" component={Easel} />
+        <Route path="/:id" component={Easel} />
+    </Switch>
+  );
+}
 
 export default routes;

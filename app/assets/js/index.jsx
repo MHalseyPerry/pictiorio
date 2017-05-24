@@ -6,20 +6,11 @@ import {
     Route
 } from 'react-router-dom';
 
-import router from '../../../routes/routes.jsx';
-const { routes } = router;
+import routes from '../../../routes';
 
 ReactDOM.render(
     <BrowserRouter>
-        <div>
-            {routes.map(r => (
-                <Route
-                    key={r.path}
-                    path={r.path}
-                    component={r.component}
-                    exact={r.exact} />
-            ))}
-        </div>
+        {routes()}
     </BrowserRouter>,
     document.getElementById('root')
 );

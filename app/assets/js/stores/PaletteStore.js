@@ -20,7 +20,6 @@ export default class PaletteStore {
     }
 
     set color (color) {
-        console.log(color);
         this.selectedColor = color;
     }
 
