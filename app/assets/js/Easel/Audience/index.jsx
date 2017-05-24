@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 
-import UserStore from '../stores/UserStore.js';
-const userStore = new UserStore();
-
 @observer
 class Audience extends Component {
     render () {
@@ -15,7 +12,7 @@ class Audience extends Component {
     }
 
     getUsers () {
-        return userStore.users.map( u => (
+        return this.props.store.users.map( u => (
             <User
                 user={u}
                 key={u.id} />

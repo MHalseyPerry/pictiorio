@@ -1,3 +1,4 @@
+const indexHtml = (html) => `
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,8 +19,11 @@
         <meta name="theme-color" content="#38b1d4">
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">${html}</div>
 
         <script src="/js/bundle.js"></script>
     </body>
 </html>
+`;
+
+export default indexHtml;

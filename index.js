@@ -1,43 +1,88 @@
+'use strict';
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _http = require('http');
+
+var _http2 = _interopRequireDefault(_http);
+
+var _socket = require('socket.io');
+
+var _socket2 = _interopRequireDefault(_socket);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = require('react-dom/server');
+
+var _server2 = _interopRequireDefault(_server);
+
+var _reactRouter = require('react-router');
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _routes = require('./routes');
+
+var _routes2 = _interopRequireDefault(_routes);
+
+var _indexHtml = require('./app/public/index.html.js');
+
+var _indexHtml2 = _interopRequireDefault(_indexHtml);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = (0, _express2.default)();
+
+// Init
 // Frameworks
-const express = require('express');
-const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const React = require('react');
-const Router = require('react-router');
 
-//const routes = require('./routes.js');
+var server = _http2.default.Server(app);
+var io = new _socket2.default(server);
 
-// Path module (built-in)
-const path = require('path');
+var file = function file(f) {
+    return _path2.default.join(__dirname, '/app/public', f || '');
+};
+app.use(_express2.default.static(file()));
 
 /*
- * Express Config
+ * Routes all requests to React Router
  */
-const file = f => path.join(__dirname, '/app/public', f || '');
-app.use(express.static(file()));
+app.use(function (req, res, next) {
+    var context = {};
+    var html = _server2.default.renderToString(_react2.default.createElement(
+        StaticRouter,
+        {
+            location: req.url,
+            context: context },
+        _routes2.default
+    ));
 
-/*
- * Routes
- */
-/*app.use( (req, res, next) => {
-    const router = Router.create({
-        routes,
-        location: req.url,
-    });
-    router.run( (Handler, state) => {
-        const html = React.renderToString(<Handler />);
-        return res.render('react_page', { html });
-    });
-});*/
-//  / - we don't actually need this defined but it's here for transparency
-app.get('/', (req, res) => {
-    res.sendFile(file('/index.html'));
+    if (context.url) {
+        res.writeHead(301, { Location: context.url });
+        res.end();
+    } else {
+        res.write((0, _indexHtml2.default)(html));
+        res.end();
+    }
 });
 
-io.on('connection', socket => console.log('A user connected'));
+/*
+ * WebSocket
+ */
+io.on('connection', function (socket) {
+    return console.log('A user connected');
+});
 
 /*
- * Listen
+ * Start Listening
  */
-http.listen(3000, () => console.log('App listening on port 3000!'));
+_http2.default.listen(3000, function () {
+    return console.log('App listening on port 3000!');
+});
